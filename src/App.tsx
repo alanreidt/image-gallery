@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
+import Alert from 'react-bootstrap/Alert';
 
 function App() {
   const images = [
@@ -54,6 +55,18 @@ function App() {
           <Button>Группировать</Button>
         </Form>
       </div>
+
+      <Container fluid="xl">
+        {/* <Alert variant="danger" onClose="" dismissible> */}
+        <Alert variant="danger" show={true} dismissible>
+          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+          <p>
+            Change this and that and try again. Duis mollis, est non commodo
+            luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+            Cras mattis consectetur purus sit amet fermentum.
+          </p>
+        </Alert>
+      </Container>
 
       <div className="PhotoGrid" hidden={grouped}>
         <Container fluid="xl">
