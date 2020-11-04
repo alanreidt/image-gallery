@@ -70,7 +70,7 @@ function App() {
       <div className="PhotoGridGrouped" hidden={!grouped}>
         <Container fluid="xl">
           {[...imagesByTag.entries()].map(([tag, images]) => (
-            <Card>
+            <Card className="mb-2">
               <Card.Header>{tag}</Card.Header>
               <CardColumns>
                 {images.map((image: any) => (
