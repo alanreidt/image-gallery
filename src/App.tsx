@@ -7,7 +7,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import CardColumns from 'react-bootstrap/CardColumns';
 import Alert from 'react-bootstrap/Alert';
 
 function App() {
@@ -89,13 +88,15 @@ function App() {
           {[...imagesByTag.entries()].map(([tag, images]) => (
             <Card className="mb-2">
               <Card.Header>{tag}</Card.Header>
-              <CardColumns>
+              <Row xl="3">
                 {images.map((image: any) => (
-                  <Card className="p-1">
-                    <Card.Img src={image.src} alt={image.alt}/>
-                  </Card>
+                  <Col className="mb-4">
+                    <Card className="p-1 h-100">
+                      <Card.Img src={image.src} alt={image.alt} style={{ maxHeight: '300px' }} />
+                    </Card>
+                  </Col>
                 ))}
-              </CardColumns>
+              </Row>
             </Card>
           ))}
         </Container>
