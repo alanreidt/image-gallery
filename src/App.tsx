@@ -20,6 +20,23 @@ function App() {
     { tag: 'crazy', src: 'https://media.giphy.com/media/XB43a39jYFT6JxjVtR/giphy.gif', alt: 'crazy' },
     { tag: 'football', src: 'https://media.giphy.com/media/l0Exl9psRODcQgaIM/giphy.gif', alt: 'football' },
   ];
+  const imagesByTag = images.reduce(
+    (map, current) => {
+      const { tag, ...image } = current;
+
+      let images = map.get(tag);
+
+      if (images !== undefined) {
+        map.set(tag, [...images, image]);
+      } else {
+        map.set(tag, [image]);
+      }
+
+      return map;
+    },
+    new Map()
+  );
+  const grouped = true;
 
   return (
     <div className="App">
@@ -38,7 +55,7 @@ function App() {
         </Form>
       </div>
 
-      <div className="PhotoGrid">
+      <div className="PhotoGrid" hidden={grouped}>
         <Container fluid="xl">
           <CardColumns>
             {images.map((image) => (
@@ -47,6 +64,23 @@ function App() {
               </Card>
             ))}
           </CardColumns>
+        </Container>
+      </div>
+
+      <div className="PhotoGridGrouped" hidden={!grouped}>
+        <Container fluid="xl">
+          {[...imagesByTag.entries()].map(([tag, images]) => (
+            <Card>
+              <Card.Header>{tag}</Card.Header>
+              <CardColumns>
+                {images.map((image) => (
+                  <Card className="p-1">
+                    <Card.Img src={image.src} alt={image.alt}/>
+                  </Card>
+                ))}
+              </CardColumns>
+            </Card>
+          ))}
         </Container>
       </div>
     </div>
