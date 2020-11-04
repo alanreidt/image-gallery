@@ -3,6 +3,9 @@ import './App.css';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import CardColumns from 'react-bootstrap/CardColumns';
 
 function App() {
   const images = [
@@ -33,6 +36,18 @@ function App() {
           <Button className="mr-sm-2" variant="danger">Очистить</Button>
           <Button>Группировать</Button>
         </Form>
+      </div>
+
+      <div className="PhotoGrid">
+        <Container fluid="xl">
+          <CardColumns>
+            {images.map((image) => (
+              <Card className="p-1">
+                <Card.Img src={image.src} alt={image.alt}/>
+              </Card>
+            ))}
+          </CardColumns>
+        </Container>
       </div>
     </div>
   );
