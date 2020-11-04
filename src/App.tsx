@@ -73,7 +73,7 @@ function App() {
             <Card>
               <Card.Header>{tag}</Card.Header>
               <CardColumns>
-                {images.map((image) => (
+                {images.map((image: any) => (
                   <Card className="p-1">
                     <Card.Img src={image.src} alt={image.alt}/>
                   </Card>
