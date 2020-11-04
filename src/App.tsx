@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -70,13 +72,15 @@ function App() {
 
       <div className="PhotoGrid" hidden={grouped}>
         <Container fluid="xl">
-          <CardColumns>
+          <Row xl="3">
             {images.map((image) => (
-              <Card className="p-1">
-                <Card.Img src={image.src} alt={image.alt}/>
-              </Card>
+              <Col className="mb-4">
+                <Card className="p-1 h-100">
+                  <Card.Img src={image.src} alt={image.alt} style={{ maxHeight: '300px' }} />
+                </Card>
+              </Col>
             ))}
-          </CardColumns>
+          </Row>
         </Container>
       </div>
 
