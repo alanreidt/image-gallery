@@ -62,6 +62,8 @@ function App() {
         .then((result) => {
           const { data } = result;
 
+          setLoading(false);
+
           if (Array.isArray(data)) {
             setNotFoundAlertVisible(true);
             return;
@@ -75,7 +77,6 @@ function App() {
           }
 
           setImages((images) => [...images, image]);
-          setLoading(false);
         });
     }
   }, [isLoading, tagInputText]);
