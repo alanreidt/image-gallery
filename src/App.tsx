@@ -37,6 +37,8 @@ function LoadingButton(props: any) {
 
 function App() {
   const [isLoading, setLoading] = useState(false);
+  const [isErrorAlertVisible, setErrorAlertVisible] = useState(false);
+  const [isNotFoundAlertVisible, setNotFoundAlertVisible] = useState(false);
   const [grouped, setGrouped] = useState(false);
   const [toggleButtonText, setToggleButtonText] = useState("Группировать");
   const [tagInputText, setTagInputText] = useState('');
@@ -163,13 +165,26 @@ function App() {
       </div>
 
       <Container fluid="xl">
-        {/* <Alert variant="danger" onClose="" dismissible> */}
-        <Alert variant="danger" show={true} dismissible>
-          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+        <Alert
+          variant="danger"
+          show={isErrorAlertVisible}
+          onClose={() => setErrorAlertVisible(false)}
+          dismissible
+        >
+          <Alert.Heading>Произошла http ошибка!</Alert.Heading>
           <p>
-            Change this and that and try again. Duis mollis, est non commodo
-            luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-            Cras mattis consectetur purus sit amet fermentum.
+            Попробуйте повторить запрос, либо проверьте интернет соединение.
+          </p>
+        </Alert>
+        <Alert
+          variant="warning"
+          show={isNotFoundAlertVisible}
+          onClose={() => setNotFoundAlertVisible(false)}
+          dismissible
+        >
+          <Alert.Heading>По тегу ничего не найдено</Alert.Heading>
+          <p>
+            Попробуйте тег 'cat' — наверняка, что-либо найдется.
           </p>
         </Alert>
       </Container>
