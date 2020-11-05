@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 
 function App() {
+  const [grouped, setGrouped] = useState(false);
+  const [toggleButtonText, setToggleButtonText] = useState("Группировать");
+
   const images = [
     { tag: 'car', src: 'https://media.giphy.com/media/3ov9jWu7BuHufyLs7m/giphy.gif', alt: 'car' },
     { tag: 'car', src: 'https://media.giphy.com/media/Y1ggBG6wpBdwA/giphy.gif', alt: 'car' },
@@ -38,7 +43,16 @@ function App() {
     },
     new Map()
   );
-  const grouped = true;
+
+  const handleToggleButtonChange = (event: any) => {
+    setGrouped(event.currentTarget.checked);
+
+    const text = event.currentTarget.checked
+      ? "Разгруппировать"
+      : "Группировать";
+
+    setToggleButtonText(text);
+  }
 
   return (
     <div className="App">
@@ -53,7 +67,16 @@ function App() {
           />
           <Button className="mr-sm-2" variant="success">Загрузить</Button>
           <Button className="mr-sm-2" variant="danger">Очистить</Button>
-          <Button>Группировать</Button>
+          <ButtonGroup toggle>
+            <ToggleButton
+              type="checkbox"
+              value="grouped"
+              checked={grouped}
+              onChange={handleToggleButtonChange}
+            >
+              {toggleButtonText}
+            </ToggleButton>
+          </ButtonGroup>
         </Form>
       </div>
 
