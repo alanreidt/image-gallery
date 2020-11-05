@@ -14,8 +14,8 @@ import Alert from 'react-bootstrap/Alert';
 function App() {
   const [grouped, setGrouped] = useState(false);
   const [toggleButtonText, setToggleButtonText] = useState("Группировать");
-
-  const images = [
+  const [tagInputText, setTagInputText] = useState('');
+  const [images, setImages] = useState([
     { tag: 'car', src: 'https://media.giphy.com/media/3ov9jWu7BuHufyLs7m/giphy.gif', alt: 'car' },
     { tag: 'car', src: 'https://media.giphy.com/media/Y1ggBG6wpBdwA/giphy.gif', alt: 'car' },
     { tag: 'mouse', src: 'https://media.giphy.com/media/NLuFwZieDxvws/giphy.gif', alt: 'mouse' },
@@ -26,7 +26,8 @@ function App() {
     { tag: 'crazy', src: 'https://media.giphy.com/media/KWzzTbkhDvmQU/giphy.gif', alt: 'crazy' },
     { tag: 'crazy', src: 'https://media.giphy.com/media/XB43a39jYFT6JxjVtR/giphy.gif', alt: 'crazy' },
     { tag: 'football', src: 'https://media.giphy.com/media/l0Exl9psRODcQgaIM/giphy.gif', alt: 'football' },
-  ];
+  ]);
+
   const imagesByTag = images.reduce(
     (map, current) => {
       const { tag, ...image } = current;
@@ -43,6 +44,15 @@ function App() {
     },
     new Map()
   );
+
+  const handleTagInputChange = (event: any) => {
+    setTagInputText(event.target.value);
+  }
+
+  const handleClearButtonClick = () => {
+    setTagInputText('');
+    setImages([]);
+  }
 
   const handleToggleButtonChange = (event: any) => {
     setGrouped(event.currentTarget.checked);
@@ -64,9 +74,17 @@ function App() {
             id="tag"
             className="mr-sm-2"
             placeholder="Введите тег"
+            value={tagInputText}
+            onChange={handleTagInputChange}
           />
           <Button className="mr-sm-2" variant="success">Загрузить</Button>
-          <Button className="mr-sm-2" variant="danger">Очистить</Button>
+          <Button
+            className="mr-sm-2"
+            variant="danger"
+            onClick={handleClearButtonClick}
+          >
+            Очистить
+          </Button>
           <ButtonGroup toggle>
             <ToggleButton
               type="checkbox"
