@@ -11,22 +11,17 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 
-function simulateNetworkRequest() {
-  return new Promise((resolve) => setTimeout(resolve, 2000));
+const API_KEY = 'gTJAO48YcpmrADUyo4opy4ES4g7iDBxx';
+const composeGiphyGetUrl = (key: string, tag: string) => `https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${tag}`;
+
+function requestImageByTag(tag: string) {
+  const url = composeGiphyGetUrl(API_KEY, tag);
+
+  return fetch(url);
 }
 
 function LoadingButton(props: any) {
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (isLoading) {
-      simulateNetworkRequest().then(() => {
-        setLoading(false);
-      });
-    }
-  }, [isLoading]);
-
-  const handleClick = () => setLoading(true);
+  const { isLoading, handleClick } = props;
 
   return (
     <Button
@@ -41,6 +36,7 @@ function LoadingButton(props: any) {
 }
 
 function App() {
+  const [isLoading, setLoading] = useState(false);
   const [grouped, setGrouped] = useState(false);
   const [toggleButtonText, setToggleButtonText] = useState("Группировать");
   const [tagInputText, setTagInputText] = useState('');
@@ -56,6 +52,30 @@ function App() {
     { tag: 'crazy', src: 'https://media.giphy.com/media/XB43a39jYFT6JxjVtR/giphy.gif', alt: 'crazy' },
     { tag: 'football', src: 'https://media.giphy.com/media/l0Exl9psRODcQgaIM/giphy.gif', alt: 'football' },
   ]);
+
+  useEffect(() => {
+    if (isLoading) {
+      requestImageByTag(tagInputText)
+        .then((response) => response.json())
+        .then((result) => {
+          const { data } = result;
+
+          if (Array.isArray(data)) {
+            // showAlert(no result)
+          }
+
+          const imageUrl = data['image_url'];
+          const image = {
+            tag: tagInputText,
+            src: imageUrl,
+            alt: tagInputText,
+          }
+
+          setImages((images) => [...images, image]);
+          setLoading(false);
+        });
+    }
+  }, [isLoading, tagInputText]);
 
   const imagesByTag = images.reduce(
     (map, current) => {
@@ -91,6 +111,8 @@ function App() {
     setImages([]);
   }
 
+  const handleLoadingButtonClick = () => setLoading(true);
+
   const handleToggleButtonChange = (event: any) => {
     setGrouped(event.currentTarget.checked);
 
@@ -115,7 +137,11 @@ function App() {
             onChange={handleTagInputChange}
           />
           {/* <Button className="mr-sm-2" variant="success">Загрузить</Button> */}
-          <LoadingButton className="mr-2"></LoadingButton>
+          <LoadingButton
+            className="mr-2"
+            isLoading={isLoading}
+            handleClick={handleLoadingButtonClick}
+          />
           <Button
             className="mr-sm-2"
             variant="danger"
