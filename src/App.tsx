@@ -49,6 +49,14 @@ function App() {
     setTagInputText(event.target.value);
   }
 
+  const handleImageCardClick = (event: any) => {
+    event.preventDefault();
+
+    const card = event.target.closest('.card');
+
+    setTagInputText(card.dataset.tag);
+  }
+
   const handleClearButtonClick = () => {
     setTagInputText('');
     setImages([]);
@@ -115,7 +123,7 @@ function App() {
           <Row xl="3">
             {images.map((image) => (
               <Col className="mb-4">
-                <Card className="p-1 h-100">
+                <Card as={'a'} href="#" className="p-1 h-100" data-tag={image.tag} onClick={handleImageCardClick}>
                   <Card.Img src={image.src} alt={image.alt} style={{ maxHeight: '300px' }} />
                 </Card>
               </Col>
@@ -132,7 +140,7 @@ function App() {
               <Row xl="3">
                 {images.map((image: any) => (
                   <Col className="mb-4">
-                    <Card className="p-1 h-100">
+                    <Card as={'a'} href="#" className="p-1 h-100" data-tag={image.tag} onClick={handleImageCardClick}>
                       <Card.Img src={image.src} alt={image.alt} style={{ maxHeight: '300px' }} />
                     </Card>
                   </Col>
