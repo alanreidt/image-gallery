@@ -63,7 +63,8 @@ function App() {
           const { data } = result;
 
           if (Array.isArray(data)) {
-            // showAlert(no result)
+            setNotFoundAlertVisible(true);
+            return;
           }
 
           const imageUrl = data['image_url'];
