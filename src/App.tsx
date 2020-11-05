@@ -77,6 +77,8 @@ function App() {
           }
 
           setImages((images) => [...images, image]);
+        }).catch(() => {
+          setErrorAlertVisible(true);
         });
     }
   }, [isLoading, tagInputText]);
