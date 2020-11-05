@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import Row from 'react-bootstrap/Row';
@@ -10,6 +10,35 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
+
+function simulateNetworkRequest() {
+  return new Promise((resolve) => setTimeout(resolve, 2000));
+}
+
+function LoadingButton(props: any) {
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      simulateNetworkRequest().then(() => {
+        setLoading(false);
+      });
+    }
+  }, [isLoading]);
+
+  const handleClick = () => setLoading(true);
+
+  return (
+    <Button
+      variant="success"
+      disabled={isLoading}
+      onClick={handleClick}
+      {...props}
+    >
+      {isLoading ? 'Загрузка…' : 'Загрузить'}
+    </Button>
+  );
+}
 
 function App() {
   const [grouped, setGrouped] = useState(false);
@@ -85,7 +114,8 @@ function App() {
             value={tagInputText}
             onChange={handleTagInputChange}
           />
-          <Button className="mr-sm-2" variant="success">Загрузить</Button>
+          {/* <Button className="mr-sm-2" variant="success">Загрузить</Button> */}
+          <LoadingButton className="mr-2"></LoadingButton>
           <Button
             className="mr-sm-2"
             variant="danger"
