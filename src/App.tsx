@@ -137,19 +137,18 @@ function App() {
           <Form.Control
             name="tag"
             id="tag"
-            className="mr-sm-2"
+            className="mr-2"
             placeholder="Введите тег"
             value={tagInputText}
             onChange={handleTagInputChange}
           />
-          {/* <Button className="mr-sm-2" variant="success">Загрузить</Button> */}
           <LoadingButton
             className="mr-2"
             isLoading={isLoading}
             handleClick={handleLoadingButtonClick}
           />
           <Button
-            className="mr-sm-2"
+            className="mr-2"
             variant="danger"
             onClick={handleClearButtonClick}
           >
@@ -195,7 +194,7 @@ function App() {
 
       <div className="PhotoGrid" hidden={grouped}>
         <Container fluid="xl">
-          <Row xl="3">
+          <Row sm="3">
             {images.map((image) => (
               <Col className="mb-4">
                 <Card as={'a'} href="#" className="p-1 h-100" data-tag={image.tag} onClick={handleImageCardClick}>
@@ -212,7 +211,7 @@ function App() {
           {[...imagesByTag.entries()].map(([tag, images]) => (
             <Card className="mb-2">
               <Card.Header>{tag}</Card.Header>
-              <Row xl="3">
+              <Row sm="3">
                 {images.map((image: any) => (
                   <Col className="mb-4">
                     <Card as={'a'} href="#" className="p-1 h-100" data-tag={image.tag} onClick={handleImageCardClick}>
