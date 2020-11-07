@@ -124,6 +124,19 @@ function App() {
     setGrouped(event.currentTarget.checked);
   }
 
+  const imageGrid = (
+    <ImageGrid
+      images={images}
+      handleImageCardClick={handleImageCardClick}
+    />
+  );
+  const groupedImageGrid = (
+    <GroupedImageGrid
+      imagesByTag={imagesByTag}
+      handleImageCardClick={handleImageCardClick}
+    />
+  );
+
   return (
     <div className="App">
       <TopBar
@@ -160,15 +173,7 @@ function App() {
           </p>
         </Alert>
 
-        <ImageGrid
-          images={images}
-          handleImageCardClick={handleImageCardClick}
-        />
-
-        <GroupedImageGrid
-          imagesByTag={imagesByTag}
-          handleImageCardClick={handleImageCardClick}
-        />
+        {grouped ? groupedImageGrid : imageGrid}
       </Container>
     </div>
   );
