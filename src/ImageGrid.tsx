@@ -13,8 +13,8 @@ export function ImageGrid(props: any) {
   return (
     <div className="ImageGrid">
       <Row sm="3">
-        {images.map((image: any) => (
-          <Col className="mb-4">
+        {images.map((image: any, index: number) => (
+          <Col key={index} className="mb-4">
             <ImageCard
               image={image}
               handleImageCardClick={handleImageCardClick}

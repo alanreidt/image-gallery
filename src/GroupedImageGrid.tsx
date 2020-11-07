@@ -14,7 +14,7 @@ export function GroupedImageGrid(props: any) {
   return (
     <div className="GroupedImageGrid">
       {[...imagesByTag.entries()].map(([tag, images]) => (
-        <Card className="mb-2">
+        <Card key={tag} className="mb-2">
           <Card.Header>{tag}</Card.Header>
           <ImageGrid
             images={images}
