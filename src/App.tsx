@@ -190,7 +190,7 @@ function App() {
         </Alert>
       </Container>
 
-      <div className="PhotoGrid" hidden={grouped}>
+      <div className="ImageGrid" hidden={grouped}>
         <Container fluid="xl">
           <Row sm="3">
             {images.map((image) => (
@@ -204,7 +204,7 @@ function App() {
         </Container>
       </div>
 
-      <div className="PhotoGridGrouped" hidden={!grouped}>
+      <div className="GroupedImageGrid" hidden={!grouped}>
         <Container fluid="xl">
           {[...imagesByTag.entries()].map(([tag, images]) => (
             <Card className="mb-2">
