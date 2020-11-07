@@ -11,7 +11,7 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 
-const API_KEY = 'gTJAO48YcpmrADUyo4opy4ES4g7iDBxx';
+const API_KEY = 'GoyWRXL2P2hOgo4MQmrKROqrX1S3vVFI';
 const composeGiphyGetUrl = (key: string, tag: string) => `https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${tag}`;
 
 function requestImageByTag(tag: string) {
