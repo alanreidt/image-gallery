@@ -8,6 +8,10 @@ export function ImageCard(props: any) {
     ...restProps
   } = props;
 
+  const sx = {
+    maxHeight: '300px',
+  };
+
   return (
     <Card
       as={'a'}
@@ -17,7 +21,7 @@ export function ImageCard(props: any) {
       onClick={handleImageCardClick}
       {...restProps}
     >
-      <Card.Img src={image.src} alt={image.alt} style={{ maxHeight: '300px' }} />
+      <Card.Img src={image.src} alt={image.alt} style={sx} />
     </Card>
   );
 }

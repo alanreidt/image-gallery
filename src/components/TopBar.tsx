@@ -25,8 +25,9 @@ export function TopBar(props: any) {
           className="mr-2"
           placeholder="Введите тег"
           value={tagInputText}
+          onChange={handleTagInputChange}
           required
-          onChange={handleTagInputChange} />
+        />
         <Button
           type="submit"
           className="mr-2"

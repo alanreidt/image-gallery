@@ -13,7 +13,7 @@ export function GroupedImageGrid(props: any) {
     (map: Map<string, any[]>, current: any) => {
       const { tag, ...image } = current;
 
-      let images = map.get(tag);
+      const images = map.get(tag);
 
       if (images !== undefined) {
         map.set(tag, [...images, image]);
