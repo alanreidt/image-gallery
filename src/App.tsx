@@ -5,9 +5,9 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
 
-import { TopBar } from './TopBar';
-import { ImageGrid } from './ImageGrid';
-import { GroupedImageGrid } from './GroupedImageGrid';
+import { TopBar } from './components/TopBar';
+import { ImageGrid } from './components/ImageGrid';
+import { GroupedImageGrid } from './components/GroupedImageGrid';
 
 const API_KEY = 'GoyWRXL2P2hOgo4MQmrKROqrX1S3vVFI';
 const composeGiphyGetUrl = (key: string, tag: string) => `https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${tag}`;
