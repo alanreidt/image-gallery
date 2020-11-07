@@ -98,6 +98,8 @@ function App() {
   );
 
   const handleTagInputChange = (event: any) => {
+    setErrorAlertShown(false);
+    setNotFoundAlertShown(false);
     setTagInputText(event.target.value);
   }
 
