@@ -56,10 +56,15 @@ function App() {
             return;
           }
 
-          const imageUrl = data['image_url'];
+          const {
+            id,
+            'image_url': src,
+          } = data;
+
           const image = {
+            id,
+            src,
             tag: tagInputText,
-            src: imageUrl,
             alt: tagInputText,
           }
 
