@@ -19,14 +19,14 @@ function requestImageByTag(tag: string) {
 }
 
 export function LoadingButton(props: any) {
-  const { isLoading, handleClick } = props;
+  const { isLoading, handleClick, ...restProps } = props;
 
   return (
     <Button
       variant="success"
       disabled={isLoading}
       onClick={handleClick}
-      {...props}
+      {...restProps}
     >
       {isLoading ? 'Загрузка…' : 'Загрузить'}
     </Button>
