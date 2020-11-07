@@ -60,23 +60,6 @@ function App() {
     }
   }, [isLoading, tagInputText]);
 
-  const imagesByTag = images.reduce(
-    (map, current) => {
-      const { tag, ...image } = current;
-
-      let images = map.get(tag);
-
-      if (images !== undefined) {
-        map.set(tag, [...images, image]);
-      } else {
-        map.set(tag, [image]);
-      }
-
-      return map;
-    },
-    new Map()
-  );
-
   const handleTagInputChange = (event: any) => {
     setErrorAlertShown(false);
     setNotFoundAlertShown(false);
@@ -114,7 +97,7 @@ function App() {
   );
   const groupedImageGrid = (
     <GroupedImageGrid
-      imagesByTag={imagesByTag}
+      images={images}
       handleImageCardClick={handleImageCardClick}
     />
   );

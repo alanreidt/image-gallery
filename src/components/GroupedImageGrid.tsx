@@ -5,9 +5,26 @@ import { ImageGrid } from './ImageGrid';
 
 export function GroupedImageGrid(props: any) {
   const {
-    imagesByTag,
+    images,
     handleImageCardClick,
   } = props;
+
+  const imagesByTag = images.reduce(
+    (map: Map<string, any[]>, current: any) => {
+      const { tag, ...image } = current;
+
+      let images = map.get(tag);
+
+      if (images !== undefined) {
+        map.set(tag, [...images, image]);
+      } else {
+        map.set(tag, [image]);
+      }
+
+      return map;
+    },
+    new Map()
+  );
 
   return (
     <div className="GroupedImageGrid">
