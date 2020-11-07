@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
+
+import { TopBar } from './TopBar';
+import { ImageGrid } from './ImageGrid';
+import { GroupedImageGrid } from './GroupedImageGrid';
 
 const API_KEY = 'GoyWRXL2P2hOgo4MQmrKROqrX1S3vVFI';
 const composeGiphyGetUrl = (key: string, tag: string) => `https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${tag}`;
@@ -20,7 +18,7 @@ function requestImageByTag(tag: string) {
   return fetch(url);
 }
 
-function LoadingButton(props: any) {
+export function LoadingButton(props: any) {
   const { isLoading, handleClick } = props;
 
   return (
@@ -128,42 +126,15 @@ function App() {
 
   return (
     <div className="App">
-      <div className="TopBar d-flex py-4 justify-content-center">
-        <Form name="top-bar-form" inline onSubmit={handleFormSubmit}>
-          <Form.Label htmlFor="tag" srOnly>Введите тег</Form.Label>
-          <Form.Control
-            name="tag"
-            id="tag"
-            className="mr-2"
-            placeholder="Введите тег"
-            value={tagInputText}
-            required
-            onChange={handleTagInputChange}
-          />
-          <LoadingButton
-            type="submit"
-            className="mr-2"
-            isLoading={isLoading}
-          />
-          <Button
-            className="mr-2"
-            variant="danger"
-            onClick={handleClearButtonClick}
-          >
-            Очистить
-          </Button>
-          <ButtonGroup toggle>
-            <ToggleButton
-              type="checkbox"
-              value="grouped"
-              checked={grouped}
-              onChange={handleToggleButtonChange}
-            >
-              {grouped ? 'Разгруппировать' : 'Группировать'}
-            </ToggleButton>
-          </ButtonGroup>
-        </Form>
-      </div>
+      <TopBar
+        tagInputText={tagInputText}
+        isLoading={isLoading}
+        grouped={grouped}
+        handleFormSubmit={handleFormSubmit}
+        handleTagInputChange={handleTagInputChange}
+        handleClearButtonClick={handleClearButtonClick}
+        handleToggleButtonChange={handleToggleButtonChange}
+      />
 
       <Container fluid="xl">
         <Alert
@@ -189,34 +160,15 @@ function App() {
           </p>
         </Alert>
 
-        <div className="ImageGrid" hidden={grouped}>
-          <Row sm="3">
-            {images.map((image) => (
-              <Col className="mb-4">
-                <Card as={'a'} href="#" className="p-1 h-100" data-tag={image.tag} onClick={handleImageCardClick}>
-                  <Card.Img src={image.src} alt={image.alt} style={{ maxHeight: '300px' }} />
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </div>
+        <ImageGrid
+          images={images}
+          handleImageCardClick={handleImageCardClick}
+        />
 
-        <div className="GroupedImageGrid" hidden={!grouped}>
-          {[...imagesByTag.entries()].map(([tag, images]) => (
-            <Card className="mb-2">
-              <Card.Header>{tag}</Card.Header>
-              <Row sm="3">
-                {images.map((image: any) => (
-                  <Col className="mb-4">
-                    <Card as={'a'} href="#" className="p-1 h-100" data-tag={image.tag} onClick={handleImageCardClick}>
-                      <Card.Img src={image.src} alt={image.alt} style={{ maxHeight: '300px' }} />
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
-            </Card>
-          ))}
-        </div>
+        <GroupedImageGrid
+          imagesByTag={imagesByTag}
+          handleImageCardClick={handleImageCardClick}
+        />
       </Container>
     </div>
   );
