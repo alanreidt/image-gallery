@@ -59,9 +59,8 @@ function App() {
         .then((result) => {
           const { data } = result;
 
-          setLoading(false);
-
           if (Array.isArray(data)) {
+            setLoading(false);
             setNotFoundAlertShown(true);
             return;
           }
@@ -74,6 +73,7 @@ function App() {
           }
 
           setImages((images) => [...images, image]);
+          setLoading(false);
         }).catch(() => {
           setErrorAlertShown(true);
         });
