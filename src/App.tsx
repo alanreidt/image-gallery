@@ -188,10 +188,8 @@ function App() {
             Попробуйте тег 'cat' — наверняка, что-либо найдется.
           </p>
         </Alert>
-      </Container>
 
-      <div className="ImageGrid" hidden={grouped}>
-        <Container fluid="xl">
+        <div className="ImageGrid" hidden={grouped}>
           <Row sm="3">
             {images.map((image) => (
               <Col className="mb-4">
@@ -201,11 +199,9 @@ function App() {
               </Col>
             ))}
           </Row>
-        </Container>
-      </div>
+        </div>
 
-      <div className="GroupedImageGrid" hidden={!grouped}>
-        <Container fluid="xl">
+        <div className="GroupedImageGrid" hidden={!grouped}>
           {[...imagesByTag.entries()].map(([tag, images]) => (
             <Card className="mb-2">
               <Card.Header>{tag}</Card.Header>
@@ -220,8 +216,8 @@ function App() {
               </Row>
             </Card>
           ))}
-        </Container>
-      </div>
+        </div>
+      </Container>
     </div>
   );
 }
