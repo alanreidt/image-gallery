@@ -40,7 +40,6 @@ function App() {
   const [isErrorAlertVisible, setErrorAlertVisible] = useState(false);
   const [isNotFoundAlertVisible, setNotFoundAlertVisible] = useState(false);
   const [grouped, setGrouped] = useState(false);
-  const [toggleButtonText, setToggleButtonText] = useState("Группировать");
   const [tagInputText, setTagInputText] = useState('');
   const [images, setImages] = useState([
     { tag: 'car', src: 'https://media.giphy.com/media/3ov9jWu7BuHufyLs7m/giphy.gif', alt: 'car' },
@@ -125,12 +124,6 @@ function App() {
 
   const handleToggleButtonChange = (event: any) => {
     setGrouped(event.currentTarget.checked);
-
-    const text = event.currentTarget.checked
-      ? "Разгруппировать"
-      : "Группировать";
-
-    setToggleButtonText(text);
   }
 
   return (
@@ -166,7 +159,7 @@ function App() {
               checked={grouped}
               onChange={handleToggleButtonChange}
             >
-              {toggleButtonText}
+              {grouped ? 'Разгруппировать' : 'Группировать'}
             </ToggleButton>
           </ButtonGroup>
         </Form>
