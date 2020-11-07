@@ -13,7 +13,7 @@ export function TopBar(props: any) {
     handleFormSubmit,
     handleTagInputChange,
     handleClearButtonClick,
-    handleToggleButtonChange,
+    handleGroupingButtonChange,
   } = props;
 
   return (
@@ -44,7 +44,7 @@ export function TopBar(props: any) {
             type="checkbox"
             value="grouped"
             checked={grouped}
-            onChange={handleToggleButtonChange}
+            onChange={handleGroupingButtonChange}
           >
             {grouped ? 'Разгруппировать' : 'Группировать'}
           </ToggleButton>

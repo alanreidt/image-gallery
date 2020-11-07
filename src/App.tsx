@@ -35,8 +35,8 @@ export function LoadingButton(props: any) {
 
 function App() {
   const [isLoading, setLoading] = useState(false);
-  const [isErrorAlertVisible, setErrorAlertVisible] = useState(false);
-  const [isNotFoundAlertVisible, setNotFoundAlertVisible] = useState(false);
+  const [errorAlertShown, setErrorAlertShown] = useState(false);
+  const [notFoundAlertShown, setNotFoundAlertShown] = useState(false);
   const [grouped, setGrouped] = useState(false);
   const [tagInputText, setTagInputText] = useState('');
   const [images, setImages] = useState([
@@ -62,7 +62,7 @@ function App() {
           setLoading(false);
 
           if (Array.isArray(data)) {
-            setNotFoundAlertVisible(true);
+            setNotFoundAlertShown(true);
             return;
           }
 
@@ -75,7 +75,7 @@ function App() {
 
           setImages((images) => [...images, image]);
         }).catch(() => {
-          setErrorAlertVisible(true);
+          setErrorAlertShown(true);
         });
     }
   }, [isLoading, tagInputText]);
@@ -120,7 +120,7 @@ function App() {
     setLoading(true)
   };
 
-  const handleToggleButtonChange = (event: any) => {
+  const handleGroupingButtonChange = (event: any) => {
     setGrouped(event.currentTarget.checked);
   }
 
@@ -146,14 +146,14 @@ function App() {
         handleFormSubmit={handleFormSubmit}
         handleTagInputChange={handleTagInputChange}
         handleClearButtonClick={handleClearButtonClick}
-        handleToggleButtonChange={handleToggleButtonChange}
+        handleGroupingButtonChange={handleGroupingButtonChange}
       />
 
       <Container fluid="xl">
         <Alert
           variant="danger"
-          show={isErrorAlertVisible}
-          onClose={() => setErrorAlertVisible(false)}
+          show={errorAlertShown}
+          onClose={() => setErrorAlertShown(false)}
           dismissible
         >
           <Alert.Heading>Произошла http ошибка!</Alert.Heading>
@@ -163,8 +163,8 @@ function App() {
         </Alert>
         <Alert
           variant="warning"
-          show={isNotFoundAlertVisible}
-          onClose={() => setNotFoundAlertVisible(false)}
+          show={notFoundAlertShown}
+          onClose={() => setNotFoundAlertShown(false)}
           dismissible
         >
           <Alert.Heading>По тегу ничего не найдено</Alert.Heading>
