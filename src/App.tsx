@@ -117,7 +117,11 @@ function App() {
     setImages([]);
   }
 
-  const handleFormSubmit = () => setLoading(true);
+  const handleFormSubmit = (event: any) => {
+    event.preventDefault();
+
+    setLoading(true)
+  };
 
   const handleToggleButtonChange = (event: any) => {
     setGrouped(event.currentTarget.checked);
