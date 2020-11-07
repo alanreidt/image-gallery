@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
 
@@ -16,21 +15,6 @@ function requestImageByTag(tag: string) {
   const url = composeGiphyGetUrl(API_KEY, tag);
 
   return fetch(url);
-}
-
-export function LoadingButton(props: any) {
-  const { isLoading, handleClick, ...restProps } = props;
-
-  return (
-    <Button
-      variant="success"
-      disabled={isLoading}
-      onClick={handleClick}
-      {...restProps}
-    >
-      {isLoading ? 'Загрузка…' : 'Загрузить'}
-    </Button>
-  );
 }
 
 function App() {
