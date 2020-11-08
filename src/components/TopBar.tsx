@@ -4,7 +4,9 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 
-export function TopBar(props: any) {
+import { TopBarProps } from '../constants';
+
+export function TopBar(props: TopBarProps) {
   const {
     tagInputText,
     isLoading,

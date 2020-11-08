@@ -19,3 +19,13 @@ export type ImageGridProps = {
   images: ImageInterface[];
   handleImageCardClick: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
 };
+
+export type TopBarProps = {
+  tagInputText: ImageInterface['tag'];
+  isLoading: boolean;
+  grouped: boolean;
+  handleFormSubmit: React.FormEventHandler<HTMLFormElement>;
+  handleTagInputChange: React.ChangeEventHandler<HTMLInputElement>;
+  handleClearButtonClick: React.MouseEventHandler<HTMLButtonElement>;
+  handleGroupingButtonChange: React.ChangeEventHandler<HTMLInputElement>;
+};
