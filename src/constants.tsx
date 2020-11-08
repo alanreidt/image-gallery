@@ -5,6 +5,11 @@ export interface ImageInterface {
   alt: string;
 }
 
+export interface AppConfig {
+  initialImages?: ImageInterface[];
+  initialGrouped?: boolean;
+}
+
 export type ImageCardProps = {
   image: ImageInterface;
   handleImageCardClick: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;

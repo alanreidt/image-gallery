@@ -7,23 +7,27 @@ import Alert from 'react-bootstrap/Alert';
 import { TopBar } from './components/TopBar';
 import { ImageGrid } from './components/ImageGrid';
 import { GroupedImageGrid } from './components/GroupedImageGrid';
+import { ImageInterface, AppConfig } from './constants';
 
-const API_KEY = 'GoyWRXL2P2hOgo4MQmrKROqrX1S3vVFI';
-const composeGiphyGetUrl = (key: string, tag: string) => `https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${tag}`;
+const GIPHY_API_KEY = 'GoyWRXL2P2hOgo4MQmrKROqrX1S3vVFI';
+const composeGiphyGetUrl = (key: string, tag: ImageInterface['tag']) => `https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${tag}`;
 
-function requestImageByTag(tag: string) {
-  const url = composeGiphyGetUrl(API_KEY, tag);
+function requestImageByTag(tag: ImageInterface['tag']) {
+  const url = composeGiphyGetUrl(GIPHY_API_KEY, tag);
 
   return fetch(url);
 }
 
-function App() {
-  const initialImages: any[] = [];
+function App(props: AppConfig = {}) {
+  const {
+    initialImages = [],
+    initialGrouped = false,
+  } = props;
 
   const [isLoading, setLoading] = useState(false);
   const [errorAlertShown, setErrorAlertShown] = useState(false);
   const [notFoundAlertShown, setNotFoundAlertShown] = useState(false);
-  const [grouped, setGrouped] = useState(false);
+  const [grouped, setGrouped] = useState(initialGrouped);
   const [tagInputText, setTagInputText] = useState('');
   const [images, setImages] = useState(initialImages);
 
@@ -45,12 +49,12 @@ function App() {
             'image_url': src,
           } = data;
 
-          const image = {
+          const image: ImageInterface = {
             id,
             src,
             tag: tagInputText,
             alt: tagInputText,
-          }
+          };
 
           setImages((images) => [...images, image]);
           setLoading(false);
@@ -64,7 +68,7 @@ function App() {
     setErrorAlertShown(false);
     setNotFoundAlertShown(false);
     setTagInputText(event.target.value);
-  }
+  };
 
   const handleImageCardClick = (event: any) => {
     event.preventDefault();
@@ -72,12 +76,12 @@ function App() {
     const card = event.target.closest('.card');
 
     setTagInputText(card.dataset.tag);
-  }
+  };
 
   const handleClearButtonClick = () => {
     setTagInputText('');
     setImages([]);
-  }
+  };
 
   const handleFormSubmit = (event: any) => {
     event.preventDefault();
@@ -87,7 +91,7 @@ function App() {
 
   const handleGroupingButtonChange = (event: any) => {
     setGrouped(event.currentTarget.checked);
-  }
+  };
 
   const imageGrid = (
     <ImageGrid
