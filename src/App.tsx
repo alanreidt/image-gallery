@@ -64,7 +64,7 @@ function App(props: AppConfig = {}) {
     }
   }, [isLoading, tagInputText]);
 
-  const handleTagInputChange = (event: React.FormEvent<HTMLInputElement>) => {
+  const handleTagInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setErrorAlertShown(false);
     setNotFoundAlertShown(false);
     setTagInputText(event.currentTarget.value);
@@ -89,7 +89,7 @@ function App(props: AppConfig = {}) {
     setLoading(true)
   };
 
-  const handleGroupingButtonChange = (event: React.FormEvent<HTMLInputElement>) => {
+  const handleGroupingButtonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setGrouped(event.currentTarget.checked);
   };
 
