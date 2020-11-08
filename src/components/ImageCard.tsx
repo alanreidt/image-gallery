@@ -1,7 +1,19 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-export function ImageCard(props: any) {
+interface Image {
+  id: string;
+  src: string;
+  tag: string;
+  alt: string;
+}
+
+type ImageCardProps = {
+  image: Image;
+  handleImageCardClick: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
+};
+
+export function ImageCard(props: ImageCardProps) {
   const {
     image,
     handleImageCardClick,
