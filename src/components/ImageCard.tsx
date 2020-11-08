@@ -10,7 +10,7 @@ export function ImageCard(props: ImageCardProps) {
     ...restProps
   } = props;
 
-  const sx = {
+  const sx: React.CSSProperties = {
     maxHeight: '300px',
   };
 
