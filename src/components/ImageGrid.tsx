@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import { ImageCard } from './ImageCard';
-import { ImageGridProps } from '../constants';
+import { ImageGridProps } from '../utils/constants';
 
 export function ImageGrid(props: ImageGridProps) {
   const {

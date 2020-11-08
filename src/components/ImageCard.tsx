@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-import { ImageCardProps } from '../constants';
+import { ImageCardProps } from '../utils/constants';
 
 export function ImageCard(props: ImageCardProps) {
   const {

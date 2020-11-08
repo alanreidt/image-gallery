@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
@@ -7,8 +6,8 @@ import Alert from 'react-bootstrap/Alert';
 import { TopBar } from './components/TopBar';
 import { ImageGrid } from './components/ImageGrid';
 import { GroupedImageGrid } from './components/GroupedImageGrid';
-import { ImageInterface, AppConfig } from './constants';
-import { requestImageByTag } from './helpers';
+import { ImageInterface, AppConfig } from './utils/constants';
+import { requestImageByTag } from './utils/helpers';
 
 function App(props: AppConfig = {}) {
   const {
@@ -59,7 +58,9 @@ function App(props: AppConfig = {}) {
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setLoading(true)
+    console.log(event.currentTarget.name);
+
+    setLoading(true);
   };
 
   const handleTagInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

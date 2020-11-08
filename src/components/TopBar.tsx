@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 
-import { TopBarProps } from '../constants';
+import { TopBarProps } from '../utils/constants';
 
 export function TopBar(props: TopBarProps) {
   const {

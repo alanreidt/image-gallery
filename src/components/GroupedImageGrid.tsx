@@ -5,7 +5,7 @@ import { ImageGrid } from './ImageGrid';
 import {
   ImageGridProps,
   ImageInterface,
-} from '../constants';
+} from '../utils/constants';
 
 export function GroupedImageGrid(props: ImageGridProps) {
   const {
