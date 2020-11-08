@@ -1,14 +1,19 @@
 import { GIPHY_API_KEY, ImageInterface } from './constants';
 
-const composeGiphyGetUrl = (key: string, tag: ImageInterface['tag']) => `https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${tag}`;
+const composeGiphyGetUrlByKeyAndTag = (apiKey: string) => (tag: ImageInterface['tag']) => (
+  `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=${tag}`
+);
 
-function requestImageByTag(tag: ImageInterface['tag']) {
-  const url = composeGiphyGetUrl(GIPHY_API_KEY, tag);
+const composeGiphyGetUrlByTag = composeGiphyGetUrlByKeyAndTag(GIPHY_API_KEY);
+
+const requestImageByTag = (tag: ImageInterface['tag']) => {
+  const url = composeGiphyGetUrlByTag(tag);
 
   return fetch(url);
 }
 
 export {
-  composeGiphyGetUrl,
+  composeGiphyGetUrlByKeyAndTag,
+  composeGiphyGetUrlByTag,
   requestImageByTag,
 }
