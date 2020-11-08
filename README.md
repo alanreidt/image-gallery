@@ -1,5 +1,5 @@
 # image-gallery-app
-Реализация галереи картинок с возможностью группировки и очистки списка, а так же с выводом ошибок. Загрузка картинок происходит через [Giphy API](https://developers.giphy.com/docs/api).
+Реализация галереи картинок с возможностью группировки и очистки списка, а также с выводом ошибок. Загрузка картинок происходит через [Giphy API](https://developers.giphy.com/docs/api).
 
 [Demo-page](https://alanreidt.github.io/image-gallery-app)
 
