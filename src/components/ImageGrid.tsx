@@ -3,12 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import { ImageCard } from './ImageCard';
-import { ImageInterface } from '../constants';
-
-type ImageGridProps = {
-  images: ImageInterface[];
-  handleImageCardClick: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
-};
+import { ImageGridProps } from '../constants';
 
 export function ImageGrid(props: ImageGridProps) {
   const {

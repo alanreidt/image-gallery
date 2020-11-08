@@ -4,3 +4,8 @@ export interface ImageInterface {
   tag: string;
   alt: string;
 }
+
+export type ImageGridProps = {
+  images: ImageInterface[];
+  handleImageCardClick: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
+};

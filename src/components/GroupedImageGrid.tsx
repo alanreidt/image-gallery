@@ -2,23 +2,26 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 
 import { ImageGrid } from './ImageGrid';
+import {
+  ImageGridProps,
+  ImageInterface,
+} from '../constants';
 
-export function GroupedImageGrid(props: any) {
+export function GroupedImageGrid(props: ImageGridProps) {
   const {
     images,
     handleImageCardClick,
   } = props;
 
   const imagesByTag = images.reduce(
-    (map: Map<string, any[]>, current: any) => {
-      const { tag, ...image } = current;
-
+    (map: Map<ImageInterface['tag'], ImageInterface[]>, currentImage) => {
+      const { tag } = currentImage;
       const images = map.get(tag);
 
       if (images !== undefined) {
-        map.set(tag, [...images, image]);
+        map.set(tag, [...images, currentImage]);
       } else {
-        map.set(tag, [image]);
+        map.set(tag, [currentImage]);
       }
 
       return map;
