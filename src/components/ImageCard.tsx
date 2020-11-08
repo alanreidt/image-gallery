@@ -1,15 +1,10 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-interface Image {
-  id: string;
-  src: string;
-  tag: string;
-  alt: string;
-}
+import { ImageInterface } from '../constants';
 
 type ImageCardProps = {
-  image: Image;
+  image: ImageInterface;
   handleImageCardClick: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
 };
 
