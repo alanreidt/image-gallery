@@ -64,10 +64,25 @@ function App(props: AppConfig = {}) {
     }
   }, [isLoading, tagInputText]);
 
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setLoading(true)
+  };
+
   const handleTagInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setErrorAlertShown(false);
     setNotFoundAlertShown(false);
     setTagInputText(event.currentTarget.value);
+  };
+
+  const handleClearButtonClick = () => {
+    setTagInputText('');
+    setImages([]);
+  };
+
+  const handleGroupingButtonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setGrouped(event.currentTarget.checked);
   };
 
   const handleImageCardClick = (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
@@ -76,21 +91,6 @@ function App(props: AppConfig = {}) {
     const tag = event.currentTarget.dataset.tag || '';
 
     setTagInputText(tag);
-  };
-
-  const handleClearButtonClick = () => {
-    setTagInputText('');
-    setImages([]);
-  };
-
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    setLoading(true)
-  };
-
-  const handleGroupingButtonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setGrouped(event.currentTarget.checked);
   };
 
   const imageGrid = (
