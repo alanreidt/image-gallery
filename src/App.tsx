@@ -58,8 +58,6 @@ function App(props: AppConfig = {}) {
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    console.log(event.currentTarget.name);
-
     setLoading(true);
   };
 
