@@ -29,3 +29,5 @@ export type TopBarProps = {
   handleClearButtonClick: React.MouseEventHandler<HTMLButtonElement>;
   handleGroupingButtonChange: React.ChangeEventHandler<HTMLInputElement>;
 };
+
+export const GIPHY_API_KEY = 'GoyWRXL2P2hOgo4MQmrKROqrX1S3vVFI';

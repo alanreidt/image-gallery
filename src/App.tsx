@@ -8,15 +8,7 @@ import { TopBar } from './components/TopBar';
 import { ImageGrid } from './components/ImageGrid';
 import { GroupedImageGrid } from './components/GroupedImageGrid';
 import { ImageInterface, AppConfig } from './constants';
-
-const GIPHY_API_KEY = 'GoyWRXL2P2hOgo4MQmrKROqrX1S3vVFI';
-const composeGiphyGetUrl = (key: string, tag: ImageInterface['tag']) => `https://api.giphy.com/v1/gifs/random?api_key=${key}&tag=${tag}`;
-
-function requestImageByTag(tag: ImageInterface['tag']) {
-  const url = composeGiphyGetUrl(GIPHY_API_KEY, tag);
-
-  return fetch(url);
-}
+import { requestImageByTag } from './helpers';
 
 function App(props: AppConfig = {}) {
   const {
