@@ -26,17 +26,22 @@ export function GroupedImageGrid(props: any) {
     new Map()
   );
 
+  const createCard = ([tag, images]: any[]) => (
+    <Card key={tag} className="mb-2">
+      <Card.Header>{tag}</Card.Header>
+      <ImageGrid
+        images={images}
+        handleImageCardClick={handleImageCardClick}
+      />
+    </Card>
+  );
+
   return (
     <div className="GroupedImageGrid">
-      {[...imagesByTag.entries()].map(([tag, images]) => (
-        <Card key={tag} className="mb-2">
-          <Card.Header>{tag}</Card.Header>
-          <ImageGrid
-            images={images}
-            handleImageCardClick={handleImageCardClick}
-          />
-        </Card>
-      ))}
+      {Array.prototype.map.call(
+        imagesByTag.entries(),
+        createCard,
+      )}
     </div>
   );
 }
