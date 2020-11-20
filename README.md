@@ -1,7 +1,13 @@
 # image-gallery-app
 Реализация галереи картинок с возможностью группировки и очистки списка, а также с выводом ошибок. Загрузка картинок происходит через [Giphy API](https://developers.giphy.com/docs/api).
 
-[Demo-page](https://alanreidt.github.io/image-gallery-app)
+[Демо-страница](https://alanreidt.github.io/image-gallery-app)
+
+[Требования](./_miscellaneous/requirements.md)
+
+[Дизайн](./_miscellaneous/layout-template)
+
+Проект был выполнен в рамках тестового задания [компании Codemark](http://codemark.ru/).
 
 ## Быстрый старт
 Для клонирования репозитория, используйте следующие команды:
@@ -24,4 +30,4 @@ npm start
 npm run build
 ```
 
-Страница доступна по адресу http://localhost:3000/.
+Страница будет доступна по адресу http://localhost:3000/.
